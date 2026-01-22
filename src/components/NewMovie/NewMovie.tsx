@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { TextField } from '../TextField';
+import { Movie } from '../../types/Movie';
 
 type Props = {
-  onAdd: (movie:any) => void;
+  onAdd: (movie: Movie) => void;
 };
 
 export const NewMovie: React.FC<Props> = ({ onAdd }: Props) => {
@@ -14,9 +15,11 @@ export const NewMovie: React.FC<Props> = ({ onAdd }: Props) => {
 
   const [count, setCount] = useState(0);
 
-  const isFormValid = Boolean(title.trim() && imgUrl.trim() && imdbUrl.trim() && imdbId.trim());
+  const isFormValid = Boolean(
+    title.trim() && imgUrl.trim() && imdbUrl.trim() && imdbId.trim(),
+  );
 
-    const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
     const newMovie = {
@@ -29,14 +32,8 @@ export const NewMovie: React.FC<Props> = ({ onAdd }: Props) => {
 
     onAdd(newMovie);
 
-    setTitle('');
-    setDescription('');
-    setImgUrl('');
-    setImdbUrl('');
-    setImdbId('');
-
-    setCount(prev => prev + 1)
-  }
+    setCount(prev => prev + 1);
+  };
 
   return (
     <form className="NewMovie" key={count} onSubmit={handleSubmit}>
@@ -45,41 +42,40 @@ export const NewMovie: React.FC<Props> = ({ onAdd }: Props) => {
       <TextField
         name="title"
         label="Title"
-        value ={title}
+        value={title}
         onChange={setTitle}
         required
       />
 
       <TextField
-      name="description"
-      label="Description"
-      value={description}
-      onChange={setDescription}
-      required
+        name="description"
+        label="Description"
+        value={description}
+        onChange={setDescription}
       />
 
       <TextField
-      name="imgUrl"
-      label="Image URL"
-      value={imgUrl}
-      onChange={setImgUrl}
-      required
+        name="imgUrl"
+        label="Image URL"
+        value={imgUrl}
+        onChange={setImgUrl}
+        required
       />
 
       <TextField
-      name="imdbUrl"
-      label="Imdb URL"
-      value={imdbUrl}
-      onChange={setImdbUrl}
-      required
+        name="imdbUrl"
+        label="Imdb URL"
+        value={imdbUrl}
+        onChange={setImdbUrl}
+        required
       />
 
       <TextField
-      name="imdbId"
-      label="Imdb ID"
-      value={imdbId}
-      onChange={setImdbId}
-      required
+        name="imdbId"
+        label="Imdb ID"
+        value={imdbId}
+        onChange={setImdbId}
+        required
       />
 
       <div className="field is-grouped">
@@ -97,4 +93,3 @@ export const NewMovie: React.FC<Props> = ({ onAdd }: Props) => {
     </form>
   );
 };
-
